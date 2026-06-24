@@ -1,6 +1,27 @@
+-- --- loader.lua (upload ini ke GitHub, raw URL masuk ke RAW_LOADER env) ---
 local HttpService = game:GetService("HttpService")
-local url    = "https://balabalala-production.up.railway.app/hub?t=MTEyOTIzMjcwOTEyMjc5MzUxMjo3M2M2ZTczNTNkMzRhZmZmNzFhMTQxNjM3M2M1ZjJkMg"
-local encKey = "e9f466b1136ea4ae"
+
+local token = _G.J4RZZ_TOKEN or ""
+if token == "" then
+    warn("[J4rzz] Token kosong — jalanin file .lua dari Discord dulu.")
+    return
+end
+
+local RAILWAY_URL = "https://your-railway-url.up.railway.app/hub"
+local url    = RAILWAY_URL .. "?t=" .. token
+
+-- encKey derived dari token, sama persis logika server
+local function sha256hmacSlice(input)
+    -- Roblox gak punya native HMAC, jadi encKey di-pass via _G dari getscript
+    -- Server derive encKey dari token, kita terima via _G.J4RZZ_ENCKEY
+    return _G.J4RZZ_ENCKEY or ""
+end
+
+local encKey = _G.J4RZZ_ENCKEY or ""
+if encKey == "" then
+    warn("[J4rzz] encKey kosong.")
+    return
+end
 
 local ok, res = pcall(function()
     return HttpService:RequestAsync({ Url = url, Method = "GET" })
