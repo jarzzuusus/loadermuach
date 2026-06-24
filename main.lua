@@ -7,7 +7,7 @@ if token == "" then
     return
 end
 
-local RAILWAY_URL = "https://your-railway-url.up.railway.app/hub"
+local RAILWAY_URL = "https://balabalala-production.up.railway.app/hub"
 local url    = RAILWAY_URL .. "?t=" .. token
 
 -- encKey derived dari token, sama persis logika server
