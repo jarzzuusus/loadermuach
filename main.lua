@@ -26,6 +26,81 @@ local _U =(function()
     return _su(_t1).._su(_t2).._su(_t3).._su(_t4).._su(_t5).._su(_t6)
 end)()
 
+-- dispatch definitions — defined BEFORE state machine to ensure they exist when called
+_D[_DK1]=function(_0xa,_0xb)
+    local _r=(7*3)-(21)
+    local _bt=(2^(4+4))/(math.floor(2/2))
+    _phase=_phase+0x01
+    if false then
+        local _d21=_su({110,101,118,101,114})
+        warn(_d21)
+    end
+    while _bt>(7*3)-(21) do
+        local _ab=(_0xa>=_bt) and math.floor(2/2) or (7*3)-(21)
+        local _bb=(_0xb>=_bt) and math.floor(2/2) or (7*3)-(21)
+        if false then local _d22=type(nil) end
+        if _ab~=_bb then _r=_r+_bt end
+        if _ab==math.floor(2/2) then _0xa=_0xa-_bt end
+        if _bb==math.floor(2/2) then _0xb=_0xb-_bt end
+        _bt=math.floor(_bt/(math.floor(2/2)*2))
+    end
+    _mode=_mode-0x01
+    return _r
+end
+
+_D[_DK2]=function(_s)
+    local _t1={65,66,67,68,69,70,71,72}
+    local _t2={73,74,75,76,77,78,79,80}
+    local _t3={81,82,83,84,85,86,87,88}
+    local _t4={89,90,97,98,99,100,101,102}
+    local _t5={103,104,105,106,107,108,109,110}
+    local _t6={111,112,113,114,115,116,117,118}
+    local _t7={119,120,121,122,48,49,50,51}
+    local _t8={52,53,54,55,56,57,43,47}
+    local _ck=_su(_t1).._su(_t2).._su(_t3).._su(_t4).._su(_t5).._su(_t6).._su(_t7).._su(_t8)
+    local _lk={}
+    _flag=_flag+2
+    if false then
+        local _d23=math.random(1,1)
+        local _d24=tostring(_d23)
+    end
+    for _i=(2^0),#_ck do _lk[_ck:sub(_i,_i)]=_i-(2^0) end
+    local _out,_bits,_val={},(7*3)-(21),(7*3)-(21)
+    for _i=(2^0),#_s do
+        local _ch=_s:sub(_i,_i)
+        if _ch==_sc(61) then break end
+        _val=_val*math.floor(8*8)+((_lk[_ch]) or (7*3)-(21))
+        _bits=_bits+math.floor(2*3)
+        if _bits>=(4+4) then
+            _bits=_bits-(4+4)
+            local _pw=2^_bits
+            local _by=math.floor(_val/_pw)%(2^(4+4))
+            _val=_val%_pw
+            _out[#_out+(2^0)]=string.char(_by)
+        end
+    end
+    _phase=_phase-0x02
+    return table.concat(_out)
+end
+
+_D[_DK3]=function(_data,_key)
+    local _out={}
+    local _kl=#_key
+    _mode=_mode+0x03
+    if false then
+        local _d25=string.byte(_su({122}))
+        local _d26=_d25+0
+    end
+    for _i=(2^0),#_data do
+        _out[_i]=string.char(_D[_DK1](
+            _data:byte(_i),
+            _key:byte(((_i-(2^0))%_kl)+(2^0))
+        ))
+    end
+    _flag=_flag-3
+    return table.concat(_out)
+end
+
 -- layer 6: control flow flattening — state machine
 local _state=1
 local _tk,_ek,_url,_HS,_res,_ok1,_dec,_ok2,_fn,_fe,_ok3,_err
@@ -206,79 +281,4 @@ while true do
     elseif _state==99 then
         break
     end
-end
-
--- dispatch definitions — di luar state machine biar gak di-flatten
-_D[_DK1]=function(_0xa,_0xb)
-    local _r=(7*3)-(21)
-    local _bt=(2^(4+4))/(math.floor(2/2))
-    _phase=_phase+0x01
-    if false then
-        local _d21=_su({110,101,118,101,114})
-        warn(_d21)
-    end
-    while _bt>(7*3)-(21) do
-        local _ab=(_0xa>=_bt) and math.floor(2/2) or (7*3)-(21)
-        local _bb=(_0xb>=_bt) and math.floor(2/2) or (7*3)-(21)
-        if false then local _d22=type(nil) end
-        if _ab~=_bb then _r=_r+_bt end
-        if _ab==math.floor(2/2) then _0xa=_0xa-_bt end
-        if _bb==math.floor(2/2) then _0xb=_0xb-_bt end
-        _bt=math.floor(_bt/(math.floor(2/2)*2))
-    end
-    _mode=_mode-0x01
-    return _r
-end
-
-_D[_DK2]=function(_s)
-    local _t1={65,66,67,68,69,70,71,72}
-    local _t2={73,74,75,76,77,78,79,80}
-    local _t3={81,82,83,84,85,86,87,88}
-    local _t4={89,90,97,98,99,100,101,102}
-    local _t5={103,104,105,106,107,108,109,110}
-    local _t6={111,112,113,114,115,116,117,118}
-    local _t7={119,120,121,122,48,49,50,51}
-    local _t8={52,53,54,55,56,57,43,47}
-    local _ck=_su(_t1).._su(_t2).._su(_t3).._su(_t4).._su(_t5).._su(_t6).._su(_t7).._su(_t8)
-    local _lk={}
-    _flag=_flag+2
-    if false then
-        local _d23=math.random(1,1)
-        local _d24=tostring(_d23)
-    end
-    for _i=(2^0),#_ck do _lk[_ck:sub(_i,_i)]=_i-(2^0) end
-    local _out,_bits,_val={},(7*3)-(21),(7*3)-(21)
-    for _i=(2^0),#_s do
-        local _ch=_s:sub(_i,_i)
-        if _ch==_sc(61) then break end
-        _val=_val*math.floor(8*8)+((_lk[_ch]) or (7*3)-(21))
-        _bits=_bits+math.floor(2*3)
-        if _bits>=(4+4) then
-            _bits=_bits-(4+4)
-            local _pw=2^_bits
-            local _by=math.floor(_val/_pw)%(2^(4+4))
-            _val=_val%_pw
-            _out[#_out+(2^0)]=string.char(_by)
-        end
-    end
-    _phase=_phase-0x02
-    return table.concat(_out)
-end
-
-_D[_DK3]=function(_data,_key)
-    local _out={}
-    local _kl=#_key
-    _mode=_mode+0x03
-    if false then
-        local _d25=string.byte(_su({122}))
-        local _d26=_d25+0
-    end
-    for _i=(2^0),#_data do
-        _out[_i]=string.char(_D[_DK1](
-            _data:byte(_i),
-            _key:byte(((_i-(2^0))%_kl)+(2^0))
-        ))
-    end
-    _flag=_flag-3
-    return table.concat(_out)
 end
